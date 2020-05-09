@@ -9,35 +9,35 @@ public class TestSide {
         int failCount = 0;
 
         // TEST ONE
-        if (sideTestHelper(1, 1, 2, 3)) {
+        if (testSideHelper(1, 1, 2, 3)) {
             passCount++;
         } else {
             failCount++;
         }
 
         // TEST TWO
-        if (sideTestHelper(2, 1, 1, 1)) {
+        if (testSideHelper(2, 1, 1, 1)) {
             passCount++;
         } else {
             failCount++;
         }
 
         // TEST THREE
-        if (sideTestHelper(3, 1, 0, 0)) {
+        if (testSideHelper(3, 1, 0, 0)) {
             passCount++;
         } else {
             failCount++;
         }
 
         // TEST FOUR
-        if (sideTestHelper(4, 0, 1, 0)) {
+        if (testSideHelper(4, 0, 1, 0)) {
             passCount++;
         } else {
             failCount++;
         }
 
         // TEST FIVE
-        if (sideTestHelper(5, 0, 0, 1)) {
+        if (testSideHelper(5, 0, 0, 1)) {
             passCount++;
         } else {
             failCount++;
@@ -47,7 +47,15 @@ public class TestSide {
 
     }
 
-    private static boolean sideTestHelper(int testNumber, int hitCount, int critCount, int accuracyCount) {
+    /**
+     * Helper function for writing tests for Side.java.
+     * @param testNumber - The Test Number of the test.
+     * @param hitCount - The number of hits on the Side you are testing.
+     * @param critCount - The number of crits on the Side you are testing.
+     * @param accuracyCount - The number of accuracies on the Side you are testing.
+     * @return - true iff the test passes and false if not.
+     */
+    private static boolean testSideHelper(int testNumber, int hitCount, int critCount, int accuracyCount) {
 
         System.out.println("--TEST " + testNumber + "--");
 
