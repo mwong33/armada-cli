@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * This class represents the dice in Fantasy Flight Games' Star Wars Armada.
@@ -7,116 +6,43 @@ import java.util.Random;
 public class Dice {
 
     /**
-     * Representation Invariant.
+     * Representation Invariant:
+     * 
      */
 
-    private Random randomNumberGenerator;
     private Side[] diceSidesArray;
-    private int simulationCount;
-    private int hitCount;
-    private int critCount;
-    private int accuracyCount;
+    private String colour;
 
     /**
      * @param diceSidesArray
      */
-    public Dice(Side[] diceSidesArray) {
+    public Dice(Side[] diceSidesArray, String colour) {
         diceSidesArray = Arrays.copyOf(diceSidesArray, diceSidesArray.length);
-        randomNumberGenerator = new Random();
-        simulationCount = 0;
-        hitCount = 0;
-        critCount = 0;
-        accuracyCount = 0;
+        this.colour = colour;
     }
-    
+
     /**
-     * 
-     * @param simCount
+     * Returns the number of sides the dice has.
+     * @return Returns the number of sides of the dice.
      */
-    public void roll(int simCount) {
-        for (int i = 0; i < simCount; i++) {
-
-            int rollNumber = randomNumberGenerator.nextInt(diceSidesArray.length);
-            
-            hitCount += diceSidesArray[rollNumber].getSideHitCount();
-            critCount += diceSidesArray[rollNumber].getSideCritCount();
-            accuracyCount += diceSidesArray[rollNumber].getSideAccuracyCount();
-
-            simulationCount++;
-
-        }
+    public int getNumberOfSides() {
+        return diceSidesArray.length;
     }
 
     /**
-     * 
+     * Returns the side of the die based on a sideIndex (0 based).
+     * @param sideIndex - The index of the side of the die you wish to return.
+     * PRE: sideIndex must be >= 0 and < diceSidesArray.length.
      */
-    public void statistics() {
-        int averageDamage = (hitCount + critCount) / simulationCount;
-        int averageAccuracyCount;
-        int chanceToCrit;
+    public Side getSide(int sideIndex) {
+        return diceSidesArray[sideIndex];
     }
 
     /**
-     * 
+     * Returns the colour of the die.
      */
-    public void reset() {
-        simulationCount = 0;
-        hitCount = 0;
-        critCount = 0;
-        accuracyCount = 0;
-    }
-
-}
-
-/**
- * This class represents possible side of a die in Fantasy Flight Games' Star Wars Armada.
- */
-class Side {
-
-    /**
-     * Represenation Invariant
-     * sideCritCount, sideHitCount, and sideAccuracyCount must always be >= 0.
-     */
-
-    private int sideCritCount;
-    private int sideHitCount;
-    private int sideAccuracyCount;
-
-    /**
-    * Constructs a side of a Star Wars Armada Die.
-    * @param critCount - The number of critical icons on the side.
-    * @param hitCount - The number of hit icons on the side.
-    * @param accuracyCount - The number of accuracy icons on the side.
-    * PRE: critCOunt, hitCount and accuracyCount MUST be >= 0. 
-    */
-    public Side(int critCount, int hitCount, int accuracyCount) {
-        this.sideCritCount = critCount;
-        this.sideHitCount = hitCount;
-        this.sideAccuracyCount = accuracyCount;
-    }
-
-    /**
-    * Returns the number of critical icons on the side.
-    * @return The number of critical icons on the side.
-    */
-    public int getSideCritCount() {
-        return sideCritCount;
-    }
-
-    /**
-    * Returns the number of hit icons on the side.
-    * @return The number of hit icons on the side.
-    */
-    public int getSideHitCount() {
-        return sideHitCount;
-    }
-
-    /**
-    * Returns the number of accuracy icons on the side.
-    * @return The number of accuracy icons on the side.
-    */
-    public int getSideAccuracyCount() {
-        return sideAccuracyCount;
+    public String getColour() {
+        return colour;
     }
 
 }
