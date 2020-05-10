@@ -1,4 +1,6 @@
 import java.util.Random;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * This class represents rolling a pool of Dice.
@@ -9,11 +11,11 @@ public class DiceSim {
      * hitCount, critCount and accuracyCount must always be >= 0.
      */
 
-    private Dice[] dicePool;
+    private HashMap<Dice, Integer> dicePool;
     private int hitCountSum;
     private int critCountSum;
     private int accuracyCountSum;
-    public int simCount;
+    public int rollCount;
     private Random rng;
 
     /**
@@ -21,11 +23,19 @@ public class DiceSim {
     * @param dicePool - An array of Dice.
     */
     public DiceSim(Dice[] dicePool) {
-        this.dicePool = dicePool;
+        
+        for (int i = 0; i < dicePool.length; i++) {
+            if (this.dicePool.containsKey(dicePool[i])) {
+                this.dicePool.put(dicePool[i], this.dicePool.get(dicePool[i]) + 1);
+            } else {
+                this.dicePool.put(dicePool[i], 1);
+            }
+        }
+
         hitCountSum = 0;
         critCountSum = 0;
         accuracyCountSum = 0;
-        simCount = 0;
+        rollCount = 0;
         rng = new Random();
     }
 
@@ -37,17 +47,26 @@ public class DiceSim {
 
         for (int roll = 1; roll <= simCount; roll++) {
 
-            for(int dieNumber = 1; dieNumber <= dicePool.length; dieNumber++) {
+            Iterator<HashMap.Entry<Dice, Integer>> iter = dicePool.entrySet().iterator();
+            
+            while(iter.hasNext()) {
 
-                int dieResult = rng.nextInt(dicePool[dieNumber].getNumberOfSides());
+                HashMap.Entry<Dice, Integer> dieSet = iter.next();
 
-                hitCountSum += dicePool[dieNumber].getSide(dieResult).getSideHitCount();
-                critCountSum += dicePool[dieNumber].getSide(dieResult).getSideCritCount();
-                accuracyCountSum += dicePool[dieNumber].getSide(dieResult).getSideAccuracyCount();
+                for(int dieNumber = 0; dieNumber < dieSet.getValue(); dieNumber++) {
+
+                    //Roll the die
+                    int dieResult = rng.nextInt(dieSet.getKey().getNumberOfSides());
+
+                    hitCountSum += dieSet.getKey().getSide(dieResult).getSideHitCount();
+                    critCountSum += dieSet.getKey().getSide(dieResult).getSideCritCount();
+                    accuracyCountSum += dieSet.getKey().getSide(dieResult).getSideAccuracyCount();
+
+                }
 
             }
             
-            simCount++;
+            rollCount++;
 
         }
 
@@ -60,7 +79,23 @@ public class DiceSim {
         hitCountSum = 0;
         critCountSum = 0;
         accuracyCountSum = 0;
-        simCount = 0;
+        rollCount = 0;
+    }
+
+    /**
+     * 
+     */
+    public void printStats() {
+        System.out.println("Number of Rolls: " + rollCount);
+        System.out.println("Number of Hits: " + hitCountSum);
+        System.out.println("Number of Crits: " + critCountSum);
+        System.out.println("Number of Accuracies: " + accuracyCountSum);
+
+        double averageDamage = ((double) hitCountSum + critCountSum) / rollCount;
+        double averageAccuracy = ((double) accuracyCountSum) / rollCount;
+
+        System.out.println("Average Damage: " + averageDamage);
+        System.out.println("Average number of Accuracies: " + averageAccuracy);
     }
 
     /**
