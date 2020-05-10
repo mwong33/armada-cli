@@ -17,7 +17,7 @@ public class Dice {
      * @param diceSidesArray
      */
     public Dice(Side[] diceSidesArray, String colour) {
-        diceSidesArray = Arrays.copyOf(diceSidesArray, diceSidesArray.length);
+        this.diceSidesArray = Arrays.copyOf(diceSidesArray, diceSidesArray.length);
         this.colour = colour;
     }
 
