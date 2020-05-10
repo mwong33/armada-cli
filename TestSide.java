@@ -43,6 +43,20 @@ public class TestSide {
             failCount++;
         }
 
+        // TEST SIX
+        if (testSideEquals(6, new Side(2, 4, 5), new Side(2,4, 5), true)) {
+            passCount++;
+        } else {
+            failCount++;
+        }
+
+        //TEST SEVEN
+        if (testSideEquals(7, new Side(1, 0, 1), new Side(1, 0, 2), false)) {
+            passCount++;
+        } else {
+            failCount++;
+        }
+
         System.out.println("Ran " + (passCount + failCount) + " Tests. " + passCount + " Passed. " + failCount + " Failed.");
 
     }
@@ -67,7 +81,6 @@ public class TestSide {
         System.out.println("Expected number of Hits (" + hitCount + "): " + testSide.getSideHitCount());
         System.out.println("Expected number of Crits (" + critCount + "): " + testSide.getSideCritCount());
         System.out.println("Expected number of Accuracies (" + accuracyCount + "): " + testSide.getSideAccuracyCount());
-        System.out.println();
 
         boolean result = true;
 
@@ -79,6 +92,42 @@ public class TestSide {
             result = false;
         }
 
+        if (result) {
+            System.out.println("TEST PASSED!");
+        } else {
+            System.out.println("TEST FAILED!");
+        }
+
+        System.out.println();
+
+        return result;
+
+    }
+
+    /**
+     * Helper function for testing the equals method of the Side class.
+     * @param testNumber - The Test Number of the test.
+     * @param aSide - One Side object you wish to compare.
+     * @param bSide - The other Side object you wish to compare.
+     * @param equals - true if the two sides are equal and false if not.
+     * @return - true iff the test passes and false if not.
+     */
+    private static boolean testSideEquals(int testNumber, Side aSide, Side bSide, boolean equals) {
+
+        System.out.println("--TEST " + testNumber + "--");
+        
+        if (equals) {
+            System.out.println("We expect the two inputted sides to be equal!");
+        } else {
+            System.out.println("We expect the two inputted sides to NOT be equal!");
+        }
+
+        boolean result = true;
+
+        if (aSide.equals(bSide) != equals) {
+            result = false;
+        }
+        
         if (result) {
             System.out.println("TEST PASSED!");
         } else {

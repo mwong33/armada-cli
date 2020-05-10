@@ -49,4 +49,26 @@ public class Side {
         return sideAccuracyCount;
     }
 
+    /**
+     * Indicates whether two objects of the Side class are equal based on their
+     * sideHitCount, sideCritCount and sideAccuracyCount.
+     * @return true iff the two sides have the same sideHitCount, sideCritCount and sideAccuracyCount.
+     */
+    public boolean equals(Side aSide) {
+
+        if (sideHitCount != aSide.sideHitCount) {
+            return false;
+        }
+
+        if (sideCritCount != aSide.sideCritCount) {
+            return false;
+        }
+
+        if (sideAccuracyCount != aSide.sideAccuracyCount) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
