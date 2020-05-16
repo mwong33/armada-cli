@@ -12,6 +12,7 @@ public class Dice {
 
     private Side[] diceSidesArray;
     private String colour;
+    private double critChance;
 
     /**
      * @param diceSidesArray
@@ -19,6 +20,17 @@ public class Dice {
     public Dice(Side[] diceSidesArray, String colour) {
         this.diceSidesArray = Arrays.copyOf(diceSidesArray, diceSidesArray.length);
         this.colour = colour;
+
+        int critCount = 0;
+
+        for (int i = 0; i < diceSidesArray.length; i++) {
+            if (diceSidesArray[i].getSideCritCount() > 0) {
+                critCount++;
+            }
+        }
+
+        critChance = (double) critCount / diceSidesArray.length;
+
     }
 
     /**
@@ -43,6 +55,14 @@ public class Dice {
      */
     public String getColour() {
         return colour;
+    }
+
+    /**
+     * Returns the percentage chance that this dice will crit (in the form of a double).
+     * @return Returns the percentage chance that this dice will crit (in the form of a double).
+     */
+    public double getCritChance() {
+        return critChance;
     }
 
 }

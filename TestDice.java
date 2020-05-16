@@ -9,21 +9,21 @@ public class TestDice {
         int failCount = 0;
 
         // TEST ONE - RED DICE
-        if (testDiceHelper(1, makeRedDieArrayHelper(), "red")) {
+        if (testDiceHelper(1, makeRedDieArrayHelper(), "red", (double) 2 / 8)) {
             passCount++;
         } else {
             failCount++;
         }
 
         // TEST TWO - BLUE DICE
-        if (testDiceHelper(2, makeBlueDieArrayHelper(), "blue")) {
+        if (testDiceHelper(2, makeBlueDieArrayHelper(), "blue", (double) 2 / 8)) {
             passCount++;
         } else {
             failCount++;
         }
 
         // TEST THREE - BLACK DICE
-        if (testDiceHelper(3, makeBlackDieArrayHelper(), "black")) {
+        if (testDiceHelper(3, makeBlackDieArrayHelper(), "black", (double) 2 / 8)) {
             passCount++;
         } else {
             failCount++;
@@ -36,11 +36,12 @@ public class TestDice {
     /**
      * Helper function for writing tests for Dice.java.
      * @param testNumber - The Test Number to the test.
-     * @param testDiceSides - The array of Side 
-     * @param testColour - 
+     * @param testDiceSides - The array of Side. 
+     * @param testColour - The colour of the Dice.
+     * @param testCritChance - The decimal chance the dice will crit.
      * @return - true iff the test passes and false if not.
      */
-    public static boolean testDiceHelper(int testNumber, Side[] testDiceSides, String testColour) {
+    public static boolean testDiceHelper(int testNumber, Side[] testDiceSides, String testColour, double testCritChance) {
 
         System.out.println("--TEST " + testNumber + "--");
 
@@ -50,7 +51,10 @@ public class TestDice {
 
         boolean result = true;
 
+        // Test the colour of the dice
         System.out.println("Expected colour (" + testColour + "): " + testDice.getColour());
+
+        // Test the number of sides of the dice
         System.out.println("Expected number of sides (" + testDiceSides.length + "): " + testDice.getNumberOfSides());
 
         // Test the sides of the dice
@@ -65,9 +69,14 @@ public class TestDice {
 
         }
 
+        // Test the crit chance
+        System.out.println("Expected crit chance (" + testCritChance + "): " + testDice.getCritChance());
+
         if (testColour != testDice.getColour()) {
             result = false;
         } else if (testDiceSides.length != testDice.getNumberOfSides()) {
+            result = false;
+        } else if (testDice.getCritChance() != testCritChance) {
             result = false;
         }
 

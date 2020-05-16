@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TreeMap;
 
 /**
  * This class represents rolling a pool of Dice.
@@ -99,10 +100,12 @@ public class DiceSim {
     }
 
     /**
-     * With the given dicePool, calculates the chance to get 1 or more crits for each die colour.
+     * With the given dicePool, calculates the chance to get 1 or more crits for each die colour and returns
+     * this data as a TreeMap<String, Double>.
      */
-    public void chanceToCrit() {
-        
+    public TreeMap<String, Integer> chanceToCrit() {
+        TreeMap<String, Integer> pass = new TreeMap<String, Integer>();
+        return pass;
     }
 
 }
