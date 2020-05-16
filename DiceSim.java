@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -48,11 +49,11 @@ public class DiceSim {
 
         for (int roll = 1; roll <= simCount; roll++) {
 
-            Iterator<HashMap.Entry<Dice, Integer>> iter = dicePool.entrySet().iterator();
+            Iterator<Map.Entry<Dice, Integer>> iter = dicePool.entrySet().iterator();
             
             while(iter.hasNext()) {
 
-                HashMap.Entry<Dice, Integer> dieSet = iter.next();
+                Map.Entry<Dice, Integer> dieSet = iter.next();
 
                 for(int dieNumber = 0; dieNumber < dieSet.getValue(); dieNumber++) {
 
@@ -84,7 +85,7 @@ public class DiceSim {
     }
 
     /**
-     * 
+     * Prints statistics of the simulation.
      */
     public void printStats() {
         System.out.println("Number of Rolls: " + rollCount);
@@ -102,10 +103,28 @@ public class DiceSim {
     /**
      * With the given dicePool, calculates the chance to get 1 or more crits for each die colour and returns
      * this data as a TreeMap<String, Double>.
+     * @return A TreeMap<String, Double> of the chance for each dice type to get 1 or more crits where the key
+     * is the colour of each dice and it's corresponding chance as a double.
      */
-    public TreeMap<String, Integer> chanceToCrit() {
-        TreeMap<String, Integer> pass = new TreeMap<String, Integer>();
-        return pass;
+    public TreeMap<String, Double> chanceToCrit() {
+        
+        TreeMap<String, Double> critDiceMap = new TreeMap<String, Double>();
+
+        // Iterate through each dice colour in the dicePool
+        Iterator<Map.Entry<Dice, Integer>> iter = dicePool.entrySet().iterator();
+
+        while (iter.hasNext()) {
+
+            Map.Entry<Dice, Integer> diceSet = iter.next();
+
+            double dieChanceToNotCrit = 1 - diceSet.getKey().getCritChance();
+            double diceSetChanceToCrit = 1 - (Math.pow(dieChanceToNotCrit, (double) diceSet.getValue()));
+
+            critDiceMap.put(diceSet.getKey().getColour(), diceSetChanceToCrit);
+
+        }
+
+        return critDiceMap;
     }
 
 }
