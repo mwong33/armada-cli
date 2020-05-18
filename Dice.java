@@ -7,7 +7,7 @@ public class Dice {
 
     /**
      * Representation Invariant:
-     * 
+     * critChance should be >= 0.0. diceSidesArray.length must be >= 1.
      */
 
     private Side[] diceSidesArray;
