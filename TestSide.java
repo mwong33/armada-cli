@@ -44,7 +44,7 @@ public class TestSide {
         }
 
         // TEST SIX
-        if (testSideEquals(6, new Side(2, 4, 5), new Side(2,4, 5), true)) {
+        if (testSideEquals(6, new Side(2, 4, 5), new Side(2, 4, 5), true)) {
             passCount++;
         } else {
             failCount++;

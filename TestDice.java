@@ -29,6 +29,27 @@ public class TestDice {
             failCount++;
         }
 
+        // TEST FOUR - TEST EQUAL DICE
+        if (testDiceEquals(4, new Dice(makeRedDieArrayHelper(), "red"), new Dice(makeRedDieArrayHelper(), "red"), true)) {
+            passCount++;
+        } else {
+            failCount++;
+        }
+
+        // TEST FOUR - TEST UNEQUAL DICE BASED ON COLOUR
+        if (testDiceEquals(4, new Dice(makeRedDieArrayHelper(), "red"), new Dice(makeRedDieArrayHelper(), "not red"), false)) {
+            passCount++;
+        } else {
+            failCount++;
+        }
+
+        // TEST FIVE - TEST UNEQUAL DICE BASED ON SIDE ARRAY
+        if (testDiceEquals(4, new Dice(makeBlueDieArrayHelper(), "red"), new Dice(makeRedDieArrayHelper(), "red"), false)) {
+            passCount++;
+        } else {
+            failCount++;
+        }
+
         System.out.println("Ran " + (passCount + failCount) + " Tests. " + passCount + " Passed. " + failCount + " Failed.");
 
     }
@@ -79,6 +100,43 @@ public class TestDice {
         } else if (testDice.getCritChance() != testCritChance) {
             result = false;
         }
+
+        System.out.println();
+
+        return result;
+    }
+
+    /**
+     * Helper function for testing the equals method of the Dice class.
+     * @param testNumber - The Test Number of the test.
+     * @param aDide - One Dice object you wish to compare.
+     * @param bDice - The toher Dice object you wish to compare.
+     * @param equals - ture if the two Dice are equal and false if not.
+     * @return - true iff the test passes and false if not. 
+     */
+    public static boolean testDiceEquals(int testNumber, Dice aDice, Dice bDice, boolean equals) {
+
+        System.out.println("--TEST " + testNumber + "--");
+
+        if(equals) {
+            System.out.println("We expect the two inputted Dice to equal!");
+        } else {
+            System.out.println("We expect the two inputted sides to NOT be equal!");
+        }
+
+        boolean result = true;
+
+        if (aDice.equals(bDice) != equals) {
+            result = false;
+        }
+
+        if (result) {
+            System.out.println("TEST PASSED!");
+        } else {
+            System.out.println("TEST FAILED!");
+        }
+
+        System.out.println();
 
         return result;
     }

@@ -15,7 +15,8 @@ public class Dice {
     private double critChance;
 
     /**
-     * @param diceSidesArray
+     * Contructs a Dice.
+     * @param diceSidesArray - An array of the Side class.
      */
     public Dice(Side[] diceSidesArray, String colour) {
         this.diceSidesArray = Arrays.copyOf(diceSidesArray, diceSidesArray.length);
@@ -31,6 +32,25 @@ public class Dice {
 
         critChance = (double) critCount / diceSidesArray.length;
 
+    }
+
+    /**
+     * Overwritten method to determine if two Dice are equal. Dice are equal iff they have the same
+     * colour and diceSidesArray.
+     * @param otherDice - The other Dice that is to be compared
+     * @return true iff the two Dice have the same colour and diecSidesArray.
+     */
+    public boolean equals(Dice otherDice) {
+        
+        if (!colour.equals(otherDice.colour)) {
+            return false;
+        }
+
+        if (!Arrays.equals(diceSidesArray, otherDice.diceSidesArray)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

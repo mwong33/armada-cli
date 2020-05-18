@@ -127,4 +127,22 @@ public class DiceSim {
         return critDiceMap;
     }
 
+    /**
+     * Prints out the chance to crit with each colour in the dicePool.
+     */
+    public void displayChanceToCrit() {
+
+        TreeMap<String, Double> critDiceMap = chanceToCrit();
+
+        Iterator<Map.Entry<String, Double>> iter = critDiceMap.entrySet().iterator();
+
+        while(iter.hasNext()) {
+
+            Map.Entry<String, Double> dieCritChance = iter.next();
+
+            System.out.println("Chance for a " + dieCritChance.getKey() + " crit: " + dieCritChance.getValue());
+        }
+
+    }
+
 }
