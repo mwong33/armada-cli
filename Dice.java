@@ -37,10 +37,13 @@ public class Dice {
     /**
      * Overwritten method to determine if two Dice are equal. Dice are equal iff they have the same
      * colour and diceSidesArray.
-     * @param otherDice - The other Dice that is to be compared
+     * @param obj - The other Dice that is to be compared
      * @return true iff the two Dice have the same colour and diecSidesArray.
      */
-    public boolean equals(Dice otherDice) {
+    @Override
+    public boolean equals(Object obj) {
+
+        Dice otherDice = (Dice) obj;
         
         if (!colour.equals(otherDice.colour)) {
             return false;

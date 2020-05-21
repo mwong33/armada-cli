@@ -52,9 +52,13 @@ public class Side {
     /**
      * Indicates whether two objects of the Side class are equal based on their
      * sideHitCount, sideCritCount and sideAccuracyCount.
+     * @param obj - The other Side object we are comparing.
      * @return true iff the two sides have the same sideHitCount, sideCritCount and sideAccuracyCount.
      */
-    public boolean equals(Side aSide) {
+    @Override
+    public boolean equals(Object obj) {
+
+        Side aSide = (Side) obj;
 
         if (sideHitCount != aSide.sideHitCount) {
             return false;

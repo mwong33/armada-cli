@@ -37,14 +37,14 @@ public class TestDice {
         }
 
         // TEST FOUR - TEST UNEQUAL DICE BASED ON COLOUR
-        if (testDiceEquals(4, new Dice(makeRedDieArrayHelper(), "red"), new Dice(makeRedDieArrayHelper(), "not red"), false)) {
+        if (testDiceEquals(5, new Dice(makeRedDieArrayHelper(), "red"), new Dice(makeRedDieArrayHelper(), "not red"), false)) {
             passCount++;
         } else {
             failCount++;
         }
 
         // TEST FIVE - TEST UNEQUAL DICE BASED ON SIDE ARRAY
-        if (testDiceEquals(4, new Dice(makeBlueDieArrayHelper(), "red"), new Dice(makeRedDieArrayHelper(), "red"), false)) {
+        if (testDiceEquals(6, new Dice(makeBlueDieArrayHelper(), "red"), new Dice(makeRedDieArrayHelper(), "red"), false)) {
             passCount++;
         } else {
             failCount++;
