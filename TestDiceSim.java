@@ -8,14 +8,31 @@ public class TestDiceSim {
         // Create a Kuat Firing Arc
         DiceSim kuatFrontArc = new DiceSim(makeStandardFiringArc(3, 2, 3));
         System.out.println("Creating a Kuat Front Arc Dice Sim!");
+        System.out.println();
 
         // Print the Stats
         System.out.println("Printing some initial stats: ");
         kuatFrontArc.printStats();
+        System.out.println();
 
         // Calculate the chance to crit
-        
+        kuatFrontArc.displayChanceToCrit();
+        System.out.println();
 
+        System.out.println("Expected Black crit: 0.578125");
+        System.out.println("Expected Blue crit: 0.4375");
+        System.out.println("Expected Red crit: 0.578125");
+        System.out.println();
+
+        // Print the Stats after 1000 rolls
+        kuatFrontArc.simulate(1000);
+        kuatFrontArc.printStats();
+        System.out.println();
+
+        // Reset the Simulation
+        kuatFrontArc.reset();
+        kuatFrontArc.printStats();
+        System.out.println();
 
     }
 

@@ -25,6 +25,8 @@ public class DiceSim {
     * @param dicePool - An array of Dice.
     */
     public DiceSim(Dice[] dicePool) {
+
+        this.dicePool = new HashMap<Dice, Integer>();
         
         for (int i = 0; i < dicePool.length; i++) {
             if (this.dicePool.containsKey(dicePool[i])) {
@@ -93,11 +95,16 @@ public class DiceSim {
         System.out.println("Number of Crits: " + critCountSum);
         System.out.println("Number of Accuracies: " + accuracyCountSum);
 
-        double averageDamage = ((double) hitCountSum + critCountSum) / rollCount;
-        double averageAccuracy = ((double) accuracyCountSum) / rollCount;
+        double averageDamage = 0.0;
+        double averageAccuracyCount = 0.0;
+
+        if (rollCount != 0) {
+            averageDamage = ((double) hitCountSum + critCountSum) / rollCount;
+            averageAccuracyCount = ((double) accuracyCountSum) / rollCount;
+        }
 
         System.out.println("Average Damage: " + averageDamage);
-        System.out.println("Average number of Accuracies: " + averageAccuracy);
+        System.out.println("Average number of Accuracies: " + averageAccuracyCount);
     }
 
     /**
