@@ -30,6 +30,7 @@ public class TestDiceSim {
         System.out.println();
 
         // Reset the Simulation
+        System.out.println("Reseting the Simulation: ");
         kuatFrontArc.reset();
         kuatFrontArc.printStats();
         System.out.println();
@@ -45,17 +46,12 @@ public class TestDiceSim {
      */
     public static Dice[] makeStandardFiringArc(int redCount, int blueCount, int blackCount) {
 
-        Dice redDie = new Dice(makeRedDieArrayHelper(), "red");
-        Dice blueDie = new Dice(makeBlueDieArrayHelper(), "blue");
-        Dice blackDie = new Dice(makeBlackDieArrayHelper(), "black");
-
         Dice[] theDiceArray = new Dice[redCount + blueCount + blackCount];
-
         int index = 0;
 
         // Add the red dice
         while (index < redCount) {
-            theDiceArray[index] = redDie;
+            theDiceArray[index] = new RedDice();
             index++;
         }
 
@@ -63,7 +59,7 @@ public class TestDiceSim {
         int blueUpperLimit = index + blueCount;
 
         while(index < blueUpperLimit) {
-            theDiceArray[index] = blueDie;
+            theDiceArray[index] = new BlueDice();
             index++;
         }
 
@@ -71,70 +67,11 @@ public class TestDiceSim {
         int blackUpperLimit = index + blackCount;
 
         while(index < blackUpperLimit) {
-            theDiceArray[index] = blackDie;
+            theDiceArray[index] = new BlackDice();
             index++;
         }
 
         return theDiceArray;
-
-    }
-
-    /**
-     * Helper function for creating a red die array.
-     * @return A Side array for the red die
-     */
-    public static Side[] makeRedDieArrayHelper() {
-
-        Side[] redDiceArray = new Side[8];
-        redDiceArray[0] = new Side(1, 0, 0);
-        redDiceArray[1] = new Side(1, 0, 0);
-        redDiceArray[2] = new Side(2, 0, 0);
-        redDiceArray[3] = new Side(0, 1, 0);
-        redDiceArray[4] = new Side(0, 1, 0);
-        redDiceArray[5] = new Side(0, 0, 1);
-        redDiceArray[6] = new Side(0, 0, 0);
-        redDiceArray[7] = new Side(0, 0, 0);
-
-        return redDiceArray;
-    }
-
-    /**
-     * Helper function for creating a blue die array.
-     * @return A Side array for the blue die
-     */
-    public static Side[] makeBlueDieArrayHelper() {
-
-        Side[] blueDiceArray = new Side[8];
-        blueDiceArray[0] = new Side(1, 0, 0);
-        blueDiceArray[1] = new Side(1, 0, 0);
-        blueDiceArray[2] = new Side(1, 0, 0);
-        blueDiceArray[3] = new Side(1, 0, 0);
-        blueDiceArray[4] = new Side(0, 1, 0);
-        blueDiceArray[5] = new Side(0, 1, 0);
-        blueDiceArray[6] = new Side(0, 0, 1);
-        blueDiceArray[7] = new Side(0, 0, 1);
-
-        return blueDiceArray;
-
-    }
-
-    /**
-     * Helper function for creating a black die array.
-     * @return A Side array for the black die
-     */
-    public static Side[] makeBlackDieArrayHelper() {
-
-        Side[] blackDiceArray = new Side[8];
-        blackDiceArray[0] = new Side(1, 0, 0);
-        blackDiceArray[1] = new Side(1, 0, 0);
-        blackDiceArray[2] = new Side(1, 0, 0);
-        blackDiceArray[3] = new Side(1, 0, 0);
-        blackDiceArray[4] = new Side(1, 1, 0);
-        blackDiceArray[5] = new Side(1, 1, 0);
-        blackDiceArray[6] = new Side(0, 0, 0);
-        blackDiceArray[7] = new Side(0, 0, 0);
-
-        return blackDiceArray;
 
     }
 

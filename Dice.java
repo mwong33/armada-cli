@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * This class represents the dice in Fantasy Flight Games' Star Wars Armada.
@@ -54,6 +55,14 @@ public class Dice {
         }
 
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + colour.hashCode();
+        result = 31 * result + Arrays.hashCode(diceSidesArray);
+        return result;
     }
 
     /**

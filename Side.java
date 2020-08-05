@@ -1,5 +1,8 @@
+import java.util.Objects;
+
 /**
- * This class represents possible side of a die in Fantasy Flight Games' Star Wars Armada.
+ * This class represents possible side of a die in Fantasy Flight Games' Star
+ * Wars Armada.
  */
 public class Side {
 
@@ -73,6 +76,11 @@ public class Side {
         }
 
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sideHitCount, sideCritCount, sideAccuracyCount);
     }
 
 }

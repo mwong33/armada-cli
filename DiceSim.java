@@ -20,6 +20,9 @@ public class DiceSim {
     public int rollCount;
     private Random rng;
 
+    // TODO: Create a more efficient constructor that does not use an array to represent the dice pool. 
+    // Consider a map to just containt the Dice Object and an Integer for the number of that Dice Object.
+
     /**
     * Constructs a DiceSim object, with the pool of dice represented as an array of Dice.
     * @param dicePool - An array of Dice.
