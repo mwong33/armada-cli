@@ -15,4 +15,4 @@ I wrote this program as a quick project to put into practice what I learned from
 # How to run
 1. Make sure you have Java 11 JDK installed. I highly recommend https://sdkman.io/ to manage your SDKs.
 2. Change directory to the repository and run `javac *.java`
-3. Run `java ArmadaDiceSimulator.java`
+3. Run `java ArmadaDiceSimulator`
