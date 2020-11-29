@@ -2,7 +2,7 @@
 A command line program designed to simulate the outcome of dice in Fantasy Flight Games' Star Wars Armada.
 
 # Objective
-I wrote this program as a quick project to put into practice what I learned from CSCI 455 at USC. I applied the following principles into my program:
+I wrote this program as a quick project to put into practice basic OOP Principles. I applied the following principles into my program:
 
 1. Inheritance
 2. Usage of Arrays, HashMaps, TreeMaps
