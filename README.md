@@ -1,4 +1,4 @@
-# armada-dice-simulator
+# armada-cli
 A command line program designed to simulate the outcome of dice in Fantasy Flight Games' Star Wars Armada.
 
 # Objective
